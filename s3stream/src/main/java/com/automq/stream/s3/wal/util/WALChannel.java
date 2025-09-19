@@ -128,7 +128,8 @@ public interface WALChannel {
     /**
      * Retry {@link #read(ByteBuf, long, int)} with the given interval until success or timeout.
      */
-    int retryRead(ByteBuf dst, long position, int length, long retryIntervalMillis, long retryTimeoutMillis) throws IOException;
+    int retryRead(ByteBuf dst, long position, int length, long retryIntervalMillis,
+        long retryTimeoutMillis) throws IOException;
 
     boolean useDirectIO();
 
@@ -210,5 +211,9 @@ public interface WALChannel {
                 return new WALFileChannel(path, capacity, recoveryMode);
             }
         }
+    }
+
+    default String nothing() {
+        return "nothing";
     }
 }
